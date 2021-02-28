@@ -1,0 +1,40 @@
+Có mấy bài ăn may nó để sẵn input là bfs hoặc cạnh đầu là gốc mấy cạnh sau chỉ đảo L R (bài 5) thì hàm tạo cây dưới đây mới hoạt động
+
+xem ảnh chụp file code của thầy
+
+Mấy bài tính tổng 10 14 15 vì có phần tử trùng nhau nên không thể áp dụng cách đọc file như trên được
+=> Cũng có thể áp dụng cách này cho mấy bài khác (trừ bài 16) nếu phần tử không trùng nhau
+=> Nói chung là cách nào cùng được. Nhưng cách này có vẻ khả thi hơn. Nếu không ổn thì quay lại dùng cách trong ành (code của thầy)
+node* TaoCay(int n)
+{
+	int a,b;char c;
+	map<int,node*>m;
+	node *root = NULL;
+	while(n--)
+	{
+		cin>>a>>b>>c;
+		node *cha = NULL;
+		if(m.find(a)==m.end())
+		{
+			cha = new node(a);
+			m[a] = cha;
+			if(root == NULL) root = cha;
+		}
+		else cha = m[a];
+		node *con = new node(b);
+		if(c=='L') cha->left = con;
+		else cha->right = con;
+		m[b] = con;
+	}
+	return root;
+}
+
++ Bài 18 cách làm của ông Duy có vẻ ngắn hơn và dễ hiểu. Vì nó là cây tìm kiếm nhị phân. Mấy bài sau nên áp dụng cách đấy.
++ Tham khảo cả code của thầy trong ảnh
+void TaoCay(node *&cay,int data){
+	if(cay==NULL) cay=TaoNode(data);
+	else{
+		if(data<cay->data) TaoCay(cay->trai,data);
+		else TaoCay(cay->phai,data);
+	}
+}

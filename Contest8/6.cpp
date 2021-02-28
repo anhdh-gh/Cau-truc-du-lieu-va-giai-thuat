@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+#define faster() ios_base::sync_with_stdio(false); cin.tie(NULL);
+using namespace std;
+
+long long process(long long n)
+{
+	long long temp;
+	queue<long long>p;
+	p.push(9);
+	while(1)
+	{
+		temp = p.front();
+		p.pop();
+		if(temp%n==0) return temp;
+		p.push(temp*10);
+		p.push(temp*10+9);
+	}
+}
+
+main()
+{
+ 	faster()
+	long long T,n;
+	cin>>T;
+	while(T--)
+	{
+		cin>>n;
+		cout<<process(n)<<endl;
+	}
+}
